@@ -9,7 +9,6 @@
 基于ARM+Linux体系构建的VMI（Virtual Mobile Infrastructure）云平台
 ## 架构
 ![OPENVMI架构](docs/architecture.png)
-技术白皮书
 ## 安装
 ### 硬件支持
 * 鲲鹏916  
