@@ -1,4 +1,4 @@
-![OPENVMI](docs/openvmi.png)
+![OPENVMI](docs/img/openvmi.png)
 # OPENVMI
 
 ### 联合开发单位：
@@ -8,7 +8,7 @@
 ## 概述
 基于ARM+Linux体系构建的VMI（Virtual Mobile Infrastructure）云平台
 ## 架构
-![OPENVMI架构](docs/architecture.png)
+![OPENVMI架构](docs/img/architecture.png)
 ## 安装
 ### 硬件支持
 * 鲲鹏916  
