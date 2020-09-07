@@ -1,4 +1,4 @@
-#安装说明
+# 安装说明
 ## 系统安装
 ### 安装依赖软件
 ```
@@ -183,7 +183,7 @@ $ sudo mkdir /opt/openvmi/libtranslator /opt/openvmi/libangle /opt/openvmi/libsw
 $ sudo cp bin/openvmi /opt/openvmi/bin/
 $ sudo cp ../libEGL_so/swiftshader/* /opt/openvmi/libs/libswiftshader/
 $ sudo cp ../libEGL_so/translator/* /opt/openvmi/libs/libtranslator/
-$ sudo cp ../libs/angle/lib/* /opt/opt/openvmi/libangle/
+$ sudo cp ../libs/angle/lib/* /opt/opt/openvmi/libs/libangle/
 ```
 ## Android镜像编译
 ### 搭建Android镜像编译环境
