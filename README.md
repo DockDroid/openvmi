@@ -13,7 +13,7 @@
 ### 硬件支持
 * 鲲鹏916  
 * 鲲鹏920  
-* FT2000+/64 
+* FT2000+/64（仅支持64位APP运行）
 ### 支持的系统版本
 * Ubuntu 18.04.1  
 ### 安装
@@ -28,3 +28,7 @@
 感谢[anbox](https://github.com/anbox/anbox)、[robox](https://github.com/lag-linaro/robox)项目组做的开创性工作  
 感谢鹏城实验室[开发者云平台](https://dw.pcl.ac.cn/#/developer/cloud)提供的帮助  
 感谢华为在[鲲鹏社区](https://bbs.huaweicloud.com/forum/forumdisplay-fid-931-orderby-lastpost-filter-typeid-typeid-829.html)发布的相关[优化措施](https://code.opensource.huaweicloud.com/Kunpeng/Native/home)
+## 免费适配
+### 免费申请云手机，开展适配测试工作  
+注册登陆：https://dw.pcl.ac.cn/#/developer/cloud  
+选择”虚拟机“-”云手机软件栈“，申请后根据邮件提示开始适配测试工作
