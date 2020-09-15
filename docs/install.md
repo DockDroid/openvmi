@@ -187,3 +187,4 @@ $ sudo cp ../libs/angle/lib/* /opt/opt/openvmi/libs/libangle/
 ```
 ## Android镜像编译
 - [搭建Android镜像编译环境](搭建Android镜像编译环境.md)
+- [编译Android镜像](编译Android镜像.md)
