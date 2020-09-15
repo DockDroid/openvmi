@@ -186,4 +186,4 @@ $ sudo cp ../libEGL_so/translator/* /opt/openvmi/libs/libtranslator/
 $ sudo cp ../libs/angle/lib/* /opt/opt/openvmi/libs/libangle/
 ```
 ## Android镜像编译
-- [搭建Android镜像编译环境](docs/搭建Android镜像编译环境.md)
+- [搭建Android镜像编译环境](搭建Android镜像编译环境.md)
