@@ -62,6 +62,8 @@ $ lunch openvmi_arm64-userdebug
 
 现在开始编译Android系统：
 ```bash
+# 直接执行make可能会报错，推荐先执行: export LC_ALL=C
+$ export LC_ALL=C
 $ make -j32
 ```
 
