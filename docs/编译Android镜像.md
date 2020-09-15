@@ -1,11 +1,15 @@
 # 编译Android镜像
 对于openvmi，我们使用的是最低限度的Android定制版本，但除此之外，我们的所有工作都基于最新版本的[Android Open Source Project](https://source.android.com/)
+
 要重建Android映像，您需要首先获取所有相关资源。这将占用您大量的磁盘空间（约40GB）。AOSP建议至少有100GB的可用磁盘空间。
+
 通常，对于构建openvmi Andorid镜像，适用[AOSP项目说明](https://source.android.com/source/requirements.html)。在这里，我们将不再描述一般如何构建Android系统，而仅着重于openvmi所需的步骤。
 
 ## 安装 Repo
 Repo 是一款工具，可让您在 Android 环境中更轻松地使用 Git。
+
 要安装 Repo，请执行以下操作：
+
 1. 确保主目录下有一个 bin/ 目录，并且该目录包含在路径中：
 
 ```bash
@@ -36,6 +40,7 @@ $ repo sync -j16
 
 ## 编译Android系统源码
 成功下载所有源代码后，您可以开始编译Android系统。
+
 首先，在Android源码目录中创建一个新的目录vendor：
 
 ```bash
