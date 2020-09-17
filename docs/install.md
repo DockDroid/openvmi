@@ -8,11 +8,46 @@ $ sudo apt install -y build-essential cmake cmake-data debhelper dbus google-moc
     libboost-thread-dev libcap-dev libsystemd-dev libegl1-mesa-dev \
     libgles2-mesa-dev libglm-dev libgtest-dev liblxc1 \
     libproperties-cpp-dev libprotobuf-dev libsdl2-dev libsdl2-image-dev lxc-dev \
-    pkg-config protobuf-compiler python-minimal libva-dev libx264-dev libfdk-aac-dev \
-    linux-headers-`uname -r`
+    pkg-config protobuf-compiler python-minimal linux-headers-`uname -r`
 ```
+## OPENVMI安装
+- 下载源码
+```bash
+    $ cd ~
+    $ git clone https://github.com/DockDroid/openvmi.git
+```
+- 编译与安装内核模块
+```bash
+    $ sudo mkdir /opt/openvmi/driver/
+    $ cd ~/openvmi/kernel/binder/
+    $ make
+    $ sudo cp binder_linux.ko /opt/openvmi/driver/
+    $ cd ../ashmem/
+    $ make
+    $ sudo cp ashmem_linux.ko /opt/openvmi/driver/
+```
+- 编译与安装openvmi
+```bash
+    $ cd ~/openvmi
+    $ mkdir build
+    $ cd build
+    $ cmake ..
+    $ make -j8 install
+    $ sudo mkdir -p /opt/openvmi/bin/ /opt/openvmi/libs/libswiftshader
+    $ sudo cp bin/openvmi /opt/openvmi/bin/
+    $ sudo cp ../libs/* /opt/openvmi/libs/libswiftshader/
+```
+## Android镜像编译
+- [搭建Android镜像编译环境](搭建Android镜像编译环境.md)
+- [编译Android镜像](编译Android镜像.md)
 ## K8S云平台相关安装
-### 1. Docker运行环境安装
+### 1. 下载源码
+```bash
+    $ cd ~
+    $ git clone https://github.com/DockDroid/cloud_platform.git
+```
+
+### 2. Docker运行环境安装
 本项目开发环境所使用的Docker版本为18.09.9，安装步骤如下：<br><br>
 **Master(Worker)节点：**
 - 创建Docker配置文件
@@ -20,21 +55,21 @@ $ sudo apt install -y build-essential cmake cmake-data debhelper dbus google-moc
     $ sudo mkdir -p /etc/docker
     $ sudo tee /etc/docker/daemon.json <<-'EOF'
     {
-      "exec-opts": ["native.cgroupdriver=systemd"],
-      "log-driver": "json-file",
-      "log-opts": {
-                       "max-size": "100m"
-                   },
-      "storage-driver": "overlay2"
+      "exec-opts": ["native.cgroupdriver=systemd"],
+      "log-driver": "json-file",
+      "log-opts": {
+                       "max-size": "100m"
+                   },
+      "storage-driver": "overlay2"
     }
     EOF
 ```
 - 添加Docker源
 ```bash
     $ sudo add-apt-repository \
-      "deb [arch=arm64] https://download.docker.com/linux/ubuntu \
-      $(lsb_release -cs) \
-      stable"
+      "deb [arch=arm64] https://download.docker.com/linux/ubuntu \
+      $(lsb_release -cs) \
+      stable"
 ```
 - 安装Docker
 ```bash
@@ -47,13 +82,13 @@ $ sudo apt install -y build-essential cmake cmake-data debhelper dbus google-moc
     $ sudo service docker restart
     $ newgrp - docker
 ```
-### 2. K8S运行环境安装
+### 3. K8S运行环境安装
 本项目开发环境所使用的K8S版本为1.14.2，安装步骤如下：<br><br>
 **Master节点：**
 - 永久关闭系统的swap功能 
 ```bash
-    $ sudo swapoff -a
-    $ sudo vi /etc/fstab (以#注释swapfile打头的那一行)
+    $ sudo swapoff -
+    $ sudo vi /etc/fstab #以“#”注释swapfile打头的那一行
 ```
 - 安装K8S相关命令行工具
 ```bash
@@ -110,7 +145,7 @@ $ sudo apt install -y build-essential cmake cmake-data debhelper dbus google-moc
 - 永久关闭系统的swap功能 
 ```bash
     $ sudo swapoff -a
-    $ sudo vi /etc/fstab (以#注释swapfile打头的那一行)
+    $ sudo vi /etc/fstab #以“#”注释swapfile打头的那一行
 ```
 - 安装K8S相关命令行工具 
 ```bash
@@ -133,10 +168,10 @@ $ sudo apt install -y build-essential cmake cmake-data debhelper dbus google-moc
 ```
 - 执行Master节点安装流程最后一步中产生的加入到集群的命令
 
-### 3. K8S设备插件服务安装
+### 4. K8S设备插件服务安装
 **Master(Worker)节点：**<br><br>
 在安装该服务前请确保K8S运行环境已经安装成功，否则服务安装后将无法成功启动，安装步骤如下：
-- 进入项目工程根目录下的“cloud-platform/k8s-dev-plugin-service"文件夹
+- 进入项目工程目录下的“cloud-platform/k8s-dev-plugin-service"文件夹
 ```bash
     $ cd cloud-platform/k8s-dev-plugin-service
 ```
@@ -144,10 +179,9 @@ $ sudo apt install -y build-essential cmake cmake-data debhelper dbus google-moc
 ```bash
     $ sudo ./install.sh
 ```
-
-### 4. K8S安卓运行环境管理服务安装
+### 5. K8S安卓运行环境管理服务安装
 **Master(Worker)节点：**<br><br>
-- 进入项目工程根目录下的“cloud-platform/android-env-service"文件夹
+- 进入项目工程目录下的“cloud-platform/android-env-service"文件夹
 ```bash
     $ cd cloud-platform/android-env-service
 ```
@@ -155,36 +189,3 @@ $ sudo apt install -y build-essential cmake cmake-data debhelper dbus google-moc
 ```bash
     $ sudo ./install.sh
 ```
-## OPENVMI安装
-- 下载源码
-```
-$ cd ~
-$ git clone https://github.com/DockDroid/openvmi.git
-```
-- 编译与安装内核模块
-```
-$ sudo mkdir /opt/openvmi/driver/
-$ cd ~/openvmi/kernel/binder/
-$ make
-$ sudo cp binder_linux.ko /opt/openvmi/driver/
-$ cd ../ashmem/
-$ make
-$ sudo cp ashmem_linux.ko /opt/openvmi/driver/
-```
-- 编译与安装openvmi
-```
-$ cd ~/openvmi
-$ mkdir build
-$ cd build
-$ cmake ..
-$ make -j8 install
-$ sudo mkdir /opt/openvmi/bin/ /opt/openvmi/libs/
-$ sudo mkdir /opt/openvmi/libtranslator /opt/openvmi/libangle /opt/openvmi/libswiftshader
-$ sudo cp bin/openvmi /opt/openvmi/bin/
-$ sudo cp ../libEGL_so/swiftshader/* /opt/openvmi/libs/libswiftshader/
-$ sudo cp ../libEGL_so/translator/* /opt/openvmi/libs/libtranslator/
-$ sudo cp ../libs/angle/lib/* /opt/opt/openvmi/libs/libangle/
-```
-## Android镜像编译
-- [搭建Android镜像编译环境](搭建Android镜像编译环境.md)
-- [编译Android镜像](编译Android镜像.md)

@@ -72,8 +72,8 @@ $ export LC_ALL=C
 $ make -j32
 ```
 
-## 编译Android系统源码
-系统编译完成后，我们需要使用编译出的system.img和ramdisk.img来构建openvmi所需的系统文件系统镜像。
+## 制作Android文件系统镜像
+系统编译完成后，我们需要使用编译出的system.img和ramdisk.img来构建openvmi所需的Android文件系统镜像。
 
 ```bash
 $ cd $HOME/openvmi-work/vendor/openvmi
@@ -84,3 +84,27 @@ $ scripts/create-package.sh \
 这将在当前目录中创建一个android.img文件。
 
 这样，您现在可以在openvmi运行时使用该镜像。
+
+## 在集群各节点服务器上导入安卓系统Docker镜像
+1. 将制作好的android.img文件传输至节点服务器上，并创建新目录：
+
+```bash
+$ mkdir mount_dir
+```
+2. 将android镜像挂载到mount_dir目录:
+
+```bash
+$ sudo mount android.img ./mount_dir
+```
+3. 进入mount_dir目录，制作Docker镜像：
+
+```bash
+$ cd ./mount_dir
+$ sudo tar --numeric-owner -cf- . | docker import - android:openvmi
+```
+4. 查看系统容器，确认android:openvmi镜像存在：
+
+```bash
+$ docker images
+```
+![docker images](img/image19.jpg)

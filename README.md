@@ -1,6 +1,8 @@
 ![OPENVMI](docs/img/openvmi.png)
 # OPENVMI
 
+![LOGO](docs/logo.jpg)
+
 ### 联合开发单位：
 鹏城实验室[(PCL)](https://dw.pcl.ac.cn/#/home/index)  
 江苏北弓智能科技有限公司[(Begoit)](http://www.begoit.com/)
@@ -9,14 +11,13 @@
 基于ARM+Linux体系构建的VMI（Virtual Mobile Infrastructure）云平台
 ## 架构
 ![OPENVMI架构](docs/img/architecture.png)
-## 安装
 ### 硬件支持
 * 鲲鹏916  
 * 鲲鹏920  
 * FT2000+/64（仅支持64位APP运行）
 ### 支持的系统版本
 * Ubuntu 18.04.1  
-### 安装
+## 安装
 详见[安装说明](docs/install.md)
 ## 使用
 详见[使用说明](docs/云手机使用指导.md)
