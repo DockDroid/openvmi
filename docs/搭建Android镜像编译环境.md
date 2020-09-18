@@ -74,18 +74,6 @@ export USE_CCACHE=1
 ```
 默认情况下，缓存将存储在 ~/.ccache 下。如果主目录位于 NFS 或一些其他的非本地文件系统中，您还需要在 .bashrc 文件中指定目录。
 
-在 Mac OS 中，您应将 linux-x86 替换成 darwin-x86：
-
-```bash
-prebuilts/misc/darwin-x86/ccache/ccache -M 50G
-```
-在编译 Ice Cream Sandwich (4.0.x) 或更低版本时，ccache 位于其他位置：
-
-```bash
-prebuilt/linux-x86/ccache/ccache -M 50G
-```
-该设置会存储在 CCACHE_DIR 中，并且为永久设置。
-
 在 Linux 中，您可以运行以下命令来观看使用 ccache 时的情况：
 
 ```bash
