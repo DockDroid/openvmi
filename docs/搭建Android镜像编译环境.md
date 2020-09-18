@@ -47,6 +47,7 @@ sudo apt-get install lib32z-dev ccache
 在一些拥有多个存储设备的计算机上，如果将源文件和输出存储在单独的存储卷中，编译速度会更快。若要进一步提高编译速度，可以将输出存储在已针对速度（而非崩溃稳定性）进行优化的文件系统中，这是因为在文件系统损坏时可以重新生成所有文件。
 要进行这项设置，请导出 OUT_DIR_COMMON_BASE 变量，使其指向将存储输出目录的位置。
 
+
 ```bash
 export OUT_DIR_COMMON_BASE=<path-to-your-out-directory>
 ```
