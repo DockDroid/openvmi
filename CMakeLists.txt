@@ -34,7 +34,6 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${EXTRA_CXX_WARNINGS}")
 #set target file install path
 SET(CMAKE_INSTALL_PREFIX "${CMAKE_SOURCE_DIR}/build")  
 
-
 # -fno-permissive causes warnings with clang, so we only enable it for gcc
 if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-permissive")
