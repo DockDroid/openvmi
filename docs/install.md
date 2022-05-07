@@ -18,7 +18,7 @@ $ sudo apt install -y build-essential cmake cmake-data debhelper dbus google-moc
 ```
 - 编译与安装内核模块
 ```bash
-    $ sudo mkdir /opt/openvmi/driver/
+    $ sudo mkdir -p /opt/openvmi/driver/
     $ cd ~/openvmi/kernel/binder/
     $ make
     $ sudo cp binder_linux.ko /opt/openvmi/driver/
@@ -44,7 +44,7 @@ $ sudo apt install -y build-essential cmake cmake-data debhelper dbus google-moc
 ### 1. 下载源码
 ```bash
     $ cd ~
-    $ git clone https://github.com/DockDroid/cloud_platform.git
+    $ git clone https://github.com/DockDroid/cloud-platform.git
 ```
 
 ### 2. Docker运行环境安装
@@ -64,10 +64,17 @@ $ sudo apt install -y build-essential cmake cmake-data debhelper dbus google-moc
     }
     EOF
 ```
-- 添加Docker源
+- 添加Docker官方源
 ```bash
     $ sudo add-apt-repository \
       "deb [arch=arm64] https://download.docker.com/linux/ubuntu \
+      $(lsb_release -cs) \
+      stable"
+```
+- 如Docker官方源网络不通，可替换为国内阿里源
+```bash
+    $ sudo add-apt-repository \
+      "deb [arch=arm64] http://mirrors.aliyun.com/docker-ce/linux/ubuntu \
       $(lsb_release -cs) \
       stable"
 ```
@@ -87,12 +94,12 @@ $ sudo apt install -y build-essential cmake cmake-data debhelper dbus google-moc
 **Master节点：**
 - 永久关闭系统的swap功能 
 ```bash
-    $ sudo swapoff -
+    $ sudo swapoff -a
     $ sudo vi /etc/fstab #以“#”注释swapfile打头的那一行
 ```
 - 安装K8S相关命令行工具
 ```bash
-    $ sudo apt-get install kubelet=1.14.2-00 kubeadm=1.14.2-00 kubectl=1.14.2-00 kubernetes-cni=0.8.7-00  
+    $ sudo apt-get install kubelet=1.14.2-00 kubeadm=1.14.2-00 kubectl=1.14.2-00 kubernetes-cni=0.7.5-00  
 ```
 - 下载K8S Master节点运行组件的Docker镜像
 ```bash
@@ -130,6 +137,7 @@ $ sudo apt install -y build-essential cmake cmake-data debhelper dbus google-moc
 ````
 - 为当前用户增加kubectl命令执行权限
 ```bash
+    $ sudo mkdir $HOME/.kube
     $ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
     $ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
@@ -149,7 +157,7 @@ $ sudo apt install -y build-essential cmake cmake-data debhelper dbus google-moc
 ```
 - 安装K8S相关命令行工具 
 ```bash
-    $ sudo apt-get install kubelet=1.14.2-00 kubeadm=1.14.2-00 kubernetes-cni=0.8.7-00
+    $ sudo apt-get install kubelet=1.14.2-00 kubeadm=1.14.2-00 kubernetes-cni=0.7.5-00
 ```
 - 下载K8S Worker节点运行组件的Docker镜像
 ```bash
@@ -171,9 +179,9 @@ $ sudo apt install -y build-essential cmake cmake-data debhelper dbus google-moc
 ### 4. K8S设备插件服务安装
 **Master(Worker)节点：**<br><br>
 在安装该服务前请确保K8S运行环境已经安装成功，否则服务安装后将无法成功启动，安装步骤如下：
-- 进入项目工程目录下的“cloud-platform/k8s-dev-plugin-service"文件夹
+- 进入项目工程目录下的“cloud-platform/services/k8s-dev-plugin-service"文件夹
 ```bash
-    $ cd cloud-platform/k8s-dev-plugin-service
+    $ cd cloud-platform/services/k8s-dev-plugin-service
 ```
 - 执行服务安装脚本
 ```bash
@@ -181,9 +189,9 @@ $ sudo apt install -y build-essential cmake cmake-data debhelper dbus google-moc
 ```
 ### 5. K8S安卓运行环境管理服务安装
 **Master(Worker)节点：**<br><br>
-- 进入项目工程目录下的“cloud-platform/android-env-service"文件夹
+- 进入项目工程目录下的“cloud-platform/services/android-env-service"文件夹
 ```bash
-    $ cd cloud-platform/android-env-service
+    $ cd cloud-platform/services/android-env-service
 ```
 - 执行服务安装脚本
 ```bash
