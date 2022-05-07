@@ -92,7 +92,7 @@ $ sudo apt install -y build-essential cmake cmake-data debhelper dbus google-moc
 ```
 - 安装K8S相关命令行工具
 ```bash
-    $ sudo apt-get install kubeadm kubernetes-cni kubectl kubelet
+    $ sudo apt-get install kubelet=1.14.2-00 kubeadm=1.14.2-00 kubectl=1.14.2-00 kubernetes-cni=0.8.7-00  
 ```
 - 下载K8S Master节点运行组件的Docker镜像
 ```bash
@@ -128,14 +128,14 @@ $ sudo apt install -y build-essential cmake cmake-data debhelper dbus google-moc
 ```bash
     $ sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --kubernetes-version=v1.14.2  
 ````
-- 安装K8S网络插件
-```bash
-    $ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
-```
-- 为当前用户增加kubectl命令操作权限
+- 为当前用户增加kubectl命令执行权限
 ```bash
     $ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
     $ sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
+- 安装K8S网络插件
+```bash
+    $ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 ```
 - 创建用于在Worker节点上执行将其加入到集群的命令
 ```bash
@@ -149,7 +149,7 @@ $ sudo apt install -y build-essential cmake cmake-data debhelper dbus google-moc
 ```
 - 安装K8S相关命令行工具 
 ```bash
-    $ sudo apt-get install kubeadm kubernetes-cni kubectl kubelet
+    $ sudo apt-get install kubelet=1.14.2-00 kubeadm=1.14.2-00 kubernetes-cni=0.8.7-00
 ```
 - 下载K8S Worker节点运行组件的Docker镜像
 ```bash
